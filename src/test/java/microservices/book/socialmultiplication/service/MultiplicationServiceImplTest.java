@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -37,12 +36,23 @@ public class MultiplicationServiceImplTest {
 
     @Test
     public void checkCorrectAttemptTest() {
-        //given some changes
-        Multiplication multiplication = new Multiplication(50,60);
+        //given
+        Multiplication multiplication = new Multiplication(50, 60);
         int answer = 3000;
         //when
         boolean result = testee.checkAttempt(multiplication, answer);
         //then
         assertThat(result).isTrue();
+    }
+
+    @Test
+    public void checkWrongAttemptTest() {
+        //given
+        Multiplication multiplication = new Multiplication(50,60);
+        int answer = 3001;
+        //when
+        boolean result = testee.checkAttempt(multiplication, answer);
+        //then
+        assertThat(result).isFalse();
     }
 }
