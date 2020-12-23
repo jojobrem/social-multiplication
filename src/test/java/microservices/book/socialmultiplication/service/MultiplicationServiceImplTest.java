@@ -1,6 +1,8 @@
 package microservices.book.socialmultiplication.service;
 
 import microservices.book.socialmultiplication.domain.Multiplication;
+import microservices.book.socialmultiplication.domain.MultiplicationResultAttempt;
+import microservices.book.socialmultiplication.domain.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -38,9 +40,9 @@ public class MultiplicationServiceImplTest {
     public void checkCorrectAttemptTest() {
         //given
         Multiplication multiplication = new Multiplication(50, 60);
-        int answer = 3000;
+        int resultAttempt = 3000;
         //when
-        boolean result = testee.checkAttempt(multiplication, answer);
+        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt));
         //then
         assertThat(result).isTrue();
     }
@@ -49,9 +51,9 @@ public class MultiplicationServiceImplTest {
     public void checkWrongAttemptTest() {
         //given
         Multiplication multiplication = new Multiplication(50,60);
-        int answer = 3001;
+        int resultAttempt = 3001;
         //when
-        boolean result = testee.checkAttempt(multiplication, answer);
+        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt));
         //then
         assertThat(result).isFalse();
     }

@@ -1,6 +1,7 @@
 package microservices.book.socialmultiplication.service;
 
 import microservices.book.socialmultiplication.domain.Multiplication;
+import microservices.book.socialmultiplication.domain.MultiplicationResultAttempt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,11 @@ class MultiplicationServiceImpl implements MultiplicationService {
         return new Multiplication(factorA, factorB);
     }
 
-    public boolean checkAttempt(Multiplication multiplication, int answer) {
-        return multiplication.getFactorA() * multiplication.getFactorB()== answer;
+    @Override
+    public boolean checkAttempt(MultiplicationResultAttempt multiplicationResultAttempt) {
+        Multiplication multiplication = multiplicationResultAttempt.getMultiplication();
+        int resultAttempt = multiplicationResultAttempt.getResultAttempt();
+        return multiplication.getFactorA() * multiplication.getFactorB() == resultAttempt;
     }
+
 }
