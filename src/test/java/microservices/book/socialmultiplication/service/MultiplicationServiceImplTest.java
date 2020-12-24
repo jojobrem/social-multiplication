@@ -42,7 +42,7 @@ public class MultiplicationServiceImplTest {
         Multiplication multiplication = new Multiplication(50, 60);
         int resultAttempt = 3000;
         //when
-        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt));
+        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt, false));
         //then
         assertThat(result).isTrue();
     }
@@ -53,7 +53,7 @@ public class MultiplicationServiceImplTest {
         Multiplication multiplication = new Multiplication(50,60);
         int resultAttempt = 3001;
         //when
-        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt));
+        boolean result = testee.checkAttempt(new MultiplicationResultAttempt(new User("joe"), multiplication, resultAttempt, false));
         //then
         assertThat(result).isFalse();
     }
